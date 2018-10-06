@@ -1,3 +1,182 @@
+* **2018-10-04:**
+    * Move 5.9/sc to 5.9/stable, version [5.9.29](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852) is now released as stable.
+    * Tag 5.9.29 release
+---
+* **2018-09-25:**
+    * Update 5.9/sc to version [5.9.29](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-29-Stable-Candidate-has-been-released/ba-p/2506740)
+---
+* **2018-09-11:**
+    * Update 5.8/stable to version [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957)
+    * Tag 5.8.30 release
+    * Update 5.9/sc to version [5.9.26](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-26-Stable-Candidate-has-been-released/ba-p/2489657)
+---
+* **2018-09-10:**
+    * Update 5.6/stable to version [5.6.40](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-6-40-LTS-Stable-has-been-released/ba-p/2488202)
+    * Tag 5.6.40 release
+    * Update 5.8/sc to version [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-Candidate-has-been-released/ba-p/2488240)
+---
+* **2018-09-04:**
+    * Add stable candidate [5.8.28](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-8-29-Stable-Candidate-has-been-released/ba-p/2481622)
+    * Add LTS stable candidate [5.6.40](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-6-40-LTS-Stable-Candidate-has-been-released/ba-p/2481272)
+---
+* **2018-08-24:**
+    * Combine and move scripts/* back to root/usr/local/bin/docker-entrypoint.sh, now has OS/MODs independence
+    * Functionize a lot of docker-entrypoint.sh and move it to root/usr/local/bin/entrypoint-functions.sh
+    * Move defaults/system.properties.default back to root/usr/lib/unifi/system.properties.default
+    * Update Dockerfiles for the entrypoint script changes
+    * Update Alpine containers to add tzdata package. Setting timezone actually works now.
+---
+* **2018-08-22:**
+    * Update scripts/*.sh to version 0.6.5, fix for issue #24 - allow setting custom GID/UID when already exists.
+---
+* **2018-08-21:**
+    * Update scripts/*.sh to version 0.6.3, adjust wording on MongoDB WARN/ERROR
+---
+* **2018-08-21:**
+    * Flatten git branches to master branch MAJOR.MINOR version subfolders.
+        * IE: /5.6/stable, /5.8/{stable,sc}, /5.9/{sc,testing}, etc.
+        * Docker cloud automated builds support subfolders and alternate Dockerfile paths allowing for this change.
+    * Reorganize directory structure to support multiple Dockerfiles and entrypoint scripts per PATCH version.
+        * Build container with different OSes, etc. easier
+        * Move root/usr/lib/unifi/system.properties.default to defaults/system.properties.default
+        * Move root/usr/local/bin/docker-entrypoint.sh scripts to scripts/{OS}-entrypoint{-MODS}.sh
+        * Rename Dockerfile names to indicate/separate what OS+MODs they're based on.
+        * ~~Move Dockerfile(s) to dockerfiles/Dockerfile.{OS}{.MOD}~~
+    * Update scripts/{OS}-entrypoint{-MODS}.sh to version 0.6.2, insure each is tagged with expected OS+MODs 
+        * IE: 0.6.2-alpine, 0.6.2-alpine-mongo, 0.6.2-debian, 0.6.2-debian-nomongo
+    * Update Dockerfiles to drop COPY root / and use COPY statements specific to container OS+MODs
+    * Update automatic build hooks script to include $DOCKERFILE_PATH variable to fix auto-build issues
+    * Rename alpine-sc tag to sc-alpine. Future tags will always be 'releasetype-os-mods'
+        * IE: sc-alpine = latest/most current UniFi Stable Candidate on Alpine; unifi58-alpine, sc-nomongo
+    * Extend *-nom tags to *-nomongo to hopefully better clarify what they are.
+    * Update README.md for the changes listed above.
+---
+* **2018-08-20:**
+    * Update Alpine Dockerfile to include openssl package. Missing tools for certificate management without...
+---
+* **2018-08-17:**
+    * Update Alpine Dockerfile to use 'frolvlad/alpine-glibc:latest' as source image.
+        * Fixes musl-c vs. glibc compat issues with UniFi included Snappy library, probably others.
+    * Update Alpine Dockerfile to leave curl installed, add other dependencies based on listing from Debian package.
+    * Update Debian Dockerfiles to stop clearing dpkg and apt DBs. Only saving ~5MB of data doing so and causing headaches for users troubleshooting.
+---
+* **2018-08-13:**
+    * Add experimental Alpine based builds running the v5.9.22 stable candidate. Hoping for smaller, simpler images.
+        * alpine:sc - DOES NOT CONTAIN MONGO. Needs to be run via docker-compose and/or connected to external Mongo DB.
+        * alpine:sc-mongo - More standard build containing Mongo DB binaries. Likely won't be used beyond here.
+        * Known issue: WebRTC doesn't load. NOTE: Access to the controller from the UBNT Cloud portal doesn't work without this.
+    * Add master:sc-nom - Debian image - DOES NOT CONTAIN MONGO. Should be run via docker-compose in tandem with external MongoDB.
+    * Add unifi58:stable-nom - Debian image - DOES NOT CONTAIN MONGO. Should be run via docker-compose in tandem with external MongoDB.
+    * Add unifi56:stable-nom - Debian image - DOES NOT CONTAIN MONGO. Should be run via docker-compose in tandem with external MongoDB.
+    * Update Dockerfiles across the board with the following:
+        * Remove MONGO_UID/MONGO_GID. The internal Mongo process runs as the "unifi" user anyway, so these aren't needed.
+        * Change UNIFI_UID to PUID and UNIFI_GID to PGID.
+        * Add RUN_CHOWN env entry and default it to 'true'. Make sure your permissions are correct and then set to 'false' to improve container startup times.
+        * Switch gosu to the Debian package. The older direct-download method was prone to build failures due to unavailable keyservers.
+    * Update docker-entrypoint.sh across the board to 0.6.1-debian.
+        * Add automated UNIFI_GID and UNIFI_UID conversion to new PGID/PUID variables.
+        * Add support for RUN_CHOWN env entry to skip chown command on slow overlay2 systems.
+        * Add warnings about future change to remove internal Mongo from images if external DB variables not detected.
+    * Update documentation
+        * Add basic Alpine info to README.md
+        * Add Mongo changes notice and suggestions to README.md
+        * Change/add README.md recommended launch/run examples for docker-compose.
+        * Add info on 'no Mongo' versions
+---
+* **2018-08-08:**
+    * Bump master:sc/VERSION to [5.9.22](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-22-Stable-Candidate-has-been-released/ba-p/2449044)
+    * Bump unifi58:stable/VERSION to [5.8.28](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036)
+    * Copy master:*/Dockerfile curl changes to unifi58 stable and sc
+    * Point latest tag at unifi58:stable
+    * Tag 5.8.28-release
+---
+* **2018-08-03:**
+    * Move 5.8.X sc to unifi58 branch.
+    * Bump master:sc/VERSION to [5.9.20](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-20-Stable-Candidate-has-been-released/ba-p/2443623)
+    * Bump unifi58:sc/VERSION to [5.8.28](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-8-28-Stable-Candidate-has-been-released/ba-p/2443775)
+    * Copy master:testing/Dockerfile curl changes to all master branch dynamic tags
+    * Delete unifi57 branch - v5.7.X train is "unsupported" by UBNT. https://community.ubnt.com/t5/UniFi-Wireless/UniFi-Controller-Releases-Updated-Jun-27th-2018/m-p/2371605
+---
+* **2018-07-20:**
+    * Update master:testing/Dockerfile to leave curl installed. Covers additional UniFi dependency starting with v5.9.12 release.
+---
+* **2018-07-20:**
+    * Bump master:testing/VERSION to [5.9.16](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-16-Testing-has-been-released/ba-p/2427840)
+---
+* **2018-07-12:**
+    * Bump master:testing/VERSION to [5.9.12](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-9-12-Testing-has-been-released/ba-p/2418005)
+    * Bump master:sc/VERSION to [5.8.25](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-SDN-Controller-5-8-25-Stable-Candidate-has-been-released/ba-p/2418897)
+---
+* **2018-06-29:**
+    * Bump master:stable/VERSION to [5.8.24](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-8-24-Stable-has-been-released/ba-p/2404580)
+---
+* **2018-06-25:**
+    * Bump master:stable/VERSION to [5.8.23](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-8-23-Stable-has-been-released/ba-p/2399028)
+    * Move current and future v5.7 releases to unifi57:stable/VERSION
+    * Bump unifi56:stable/VERSION to [5.6.39](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-6-39-LTS-Stable-has-been-released/ba-p/2398954)
+---
+* **2018-06-18:**
+    * Bump master:sc/VERSION to [5.8.23](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-23-Stable-Candidate-has-been-released/ba-p/2390452)
+---
+* **2018-06-14:**
+    * Bump master:sc/VERSION to [5.8.22](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-22-Stable-Candidate-has-been-released/ba-p/2386690)
+    * Update Dockerfile to remove depreciated "MAINTAINER", move info to LABEL "org.label-schema.vendor" value
+    * Update Dockerfile for all non-static tags to use UBNT recommended Mongo v3.4 instead of v2.6
+---
+* **2018-06-07:**
+    * Bump master:sc/VERSION to [5.8.21](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-21-Stable-Candidate-has-been-released/ba-p/2378925)
+---
+* **2018-05-29:**
+    * Bump master:sc/VERSION to [5.8.20](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-20-Stable-Candidate-has-been-released/ba-p/2368653)
+---
+* **2018-05-27:**
+    * Bump master:sc/VERSION to [5.8.19](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-19-Stable-Candidate-has-been-released/ba-p/2366443)
+---
+* **2018-05-22:**
+    * Bump unifi57:sc/VERSION to [5.7.28](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-28-Stable-Candidate-has-been-released/ba-p/2360718)
+---
+* **2018-05-17:**
+    * Bump master:sc/VERSION to [5.8.17](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-17-Stable-Candidate-has-been-released/ba-p/2353192)
+    * Bump unifi57:sc/VERSION to [5.7.27](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-27-Stable-Candidate-has-been-released/ba-p/2353185)
+    * Bump unifi56:sc/VERSION to [5.6.39](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-6-39-LTS-Stable-Candidate-has-been-released/ba-p/2353178)
+---
+* **2018-05-10:**
+    * Move 5.7.X sc to unifi57 branch.
+    * Bump master:sc/VERSION to [5.8.16](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-16-Stable-Candidate-has-been-released/ba-p/2345114)
+---
+* **2018-05-05:**
+    * Bump master:sc/VERSION to [5.7.26](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-26-Stable-Candidate-has-been-released/ba-p/2341045)
+    * Bump unifi56:sc/VERSION to [5.6.38](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-6-38-LTS-Stable-Candidate-has-been-released/ba-p/2341040)
+---
+* **2018-05-03:**
+    * Bump master:unstable/VERSION to [5.9.4](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-9-4-Unstable-has-been-released/ba-p/2339206)
+    * Update master:unstable docker-entrypoint.sh script to use "unifi" alias for ssl keystore import instead of "ubnt"
+    * Update master:stable,sc,testing docker-entrypoint.sh script to use "unifi" alias for ssl keystore import instead of "ubnt"
+    * Update unifi56:stable,sc docker-entrypoint.sh script to use "unifi" alias for ssl keystore import instead of "ubnt"
+    * Update documentation to note need to force-rebuild custom SSL keystore for v5.9+ upgrades
+---
+* **2018-05-01:**
+    * Bump master:testing/VERSION to [5.8.15](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-15-Testing-has-been-released/ba-p/2336031)
+---
+* **2018-04-23:**
+    * Bump master:testing/VERSION to [5.8.14](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-14-Testing-has-been-released/ba-p/2326882)
+---
+* **2018-04-18:**
+    * Bump master:testing/VERSION to [5.8.12](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-12-Testing-has-been-released/ba-p/2321460)
+    * Bump master:sc/VERSION to [5.7.25](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-25-Stable-Candidate-has-been-released/ba-p/2320628)
+---
+* **2018-04-16:**
+    * Bump master:stable/VERSION to [5.7.23](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813)
+    * Bump unifi56:stable/VERSION to [5.6.37](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-6-37-LTS-Stable-has-been-released/ba-p/2318810)
+    * Tag stable release 5.7.23
+    * Tag stable LTS release 5.6.37
+---
+* **2018-04-02:**
+    * Bump unifi56:sc/VERSION to [5.6.37](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-6-37-LTS-Stable-Candidate-has-been-released/ba-p/2302068)
+---
+* **2018-03-30:**
+    * Bump master:testing/VERSION to [5.8.10](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-10-Testing-has-been-released/ba-p/2299020)
+---
 * **2018-03-27:**
     * Bump master:sc/VERSION to [5.7.23](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-23-Stable-Candidate-has-been-released/ba-p/2294842)
 ---
@@ -10,7 +189,7 @@
     * Drop unifi54 and unifi55 branches, final release tags remain.
         * No further releases in those trains expected with v5.6.X being LTS.
         * Can be easily re-branched from master for emergency updates if required.
-    * Update documentation to reflect changes note above.
+    * Update documentation to reflect changes noted above.
 ---
 * **2018-03-08:**
     * Bump master:stable/VERSION to [5.7.20](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-20-Stable-has-been-released/ba-p/2271529)

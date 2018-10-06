@@ -1,16 +1,23 @@
+
 # UniFi Docker Container
 
-[![Docker Build Status](https://img.shields.io/docker/build/goofball222/unifi.svg)](https://hub.docker.com/r/goofball222/unifi/) [![Docker Pulls](https://img.shields.io/docker/pulls/goofball222/unifi.svg)](https://hub.docker.com/r/goofball222/unifi/) [![Docker Stars](https://img.shields.io/docker/stars/goofball222/unifi.svg)](https://hub.docker.com/r/goofball222/unifi/) [![MB Layers](https://images.microbadger.com/badges/image/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi) [![MB Commit](https://images.microbadger.com/badges/commit/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi) [![MB License](https://images.microbadger.com/badges/license/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi)
+[![Docker Pulls](https://img.shields.io/docker/pulls/goofball222/unifi.svg)](https://hub.docker.com/r/goofball222/unifi/) [![Docker Stars](https://img.shields.io/docker/stars/goofball222/unifi.svg)](https://hub.docker.com/r/goofball222/unifi/) [![MB Layers](https://images.microbadger.com/badges/image/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi) [![MB Commit](https://images.microbadger.com/badges/commit/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi) [![MB License](https://images.microbadger.com/badges/license/goofball222/unifi.svg)](https://microbadger.com/images/goofball222/unifi)
 
 ## Docker tags:
 | Tag | UniFi Version | Description | Release Date |
 | --- | :---: | --- | :---: |
-| [latest](https://github.com/goofball222/unifi/blob/master/stable/Dockerfile) | [5.7.20](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-20-Stable-has-been-released/ba-p/2271529) | UniFi latest stable release | 2018-03-08 |
-| [sc](https://github.com/goofball222/unifi/blob/master/sc/Dockerfile) | [5.7.23](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-7-23-Stable-Candidate-has-been-released/ba-p/2294842) | UniFi latest stable candidate release | 2018-03-27 |
-| [testing](https://github.com/goofball222/unifi/blob/master/testing/Dockerfile) | [5.8.8](https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-8-8-Testing-has-been-released/ba-p/2284459) | UniFi latest testing release | 2018-03-19 |
-| [unifi56](https://github.com/goofball222/unifi/blob/unifi56/stable/Dockerfile) | [5.6.36](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-6-36-LTS-Stable-has-been-released/ba-p/2277323) | UniFi v5.6 latest stable release | 2018-03-13 |
-| [release-5.7.20](https://github.com/goofball222/unifi/releases/tag/5.7.20) | [5.7.20](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-20-Stable-has-been-released/ba-p/2271529)| Static stable release tag/image | 2018-03-08 |
-| [release-5.6.36](https://github.com/goofball222/unifi/releases/tag/5.6.36) | [5.6.36](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-6-36-LTS-Stable-has-been-released/ba-p/2277323) | Static stable release tag/image | 2018-03-13 |
+| [latest](https://github.com/goofball222/unifi/blob/master/5.9/stable/Dockerfile.debian) | [5.9.29](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852) | UniFi latest stable release | 2018-10-04 |
+| [latest-alpine](https://github.com/goofball222/unifi/blob/master/5.9/stable/Dockerfile.alpine) | [5.9.29](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852) | UniFi latest stable release, Alpine base, **NO MONGO** | 2018-10-04 |
+| [latest-debian-nomongo](https://github.com/goofball222/unifi/blob/master/5.9/stable/Dockerfile.debian.nomongo) | [5.9.29](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852) | UniFi latest stable release, **NO MONGO** | 2018-10-04 |
+| [unifi58](https://github.com/goofball222/unifi/blob/master/5.8/stable/Dockerfile.debian) | [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957) | UniFi v5.8 latest stable release | 2018-09-11 |
+| [unifi58-alpine](https://github.com/goofball222/unifi/blob/master/5.8/stable/Dockerfile.alpine) | [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957) | UniFi v5.8 latest stable release, Alpine base, **NO MONGO** | 2018-09-11 |
+| [unifi58-debian-nomongo](https://github.com/goofball222/unifi/blob/master/5.8/stable/Dockerfile.debian.nomongo) | [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957) | UniFi v5.8 latest stable release, **NO MONGO** | 2018-09-11 |
+| [unifi56](https://github.com/goofball222/unifi/blob/master/5.6/stable/Dockerfile.debian) | [5.6.40](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-6-40-LTS-Stable-has-been-released/ba-p/2488202) | UniFi v5.6 latest stable release | 2018-09-10 |
+| [unifi56-alpine](https://github.com/goofball222/unifi/blob/master/5.6/stable/Dockerfile.alpine) | [5.6.40](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-6-40-LTS-Stable-has-been-released/ba-p/2488202) | UniFi v5.6 latest stable release, Alpine base, **NO MONGO** | 2018-09-10 |
+| [unifi56-debian-nomongo](https://github.com/goofball222/unifi/blob/master/5.6/stable/Dockerfile.debian.nomongo) | [5.6.40](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-6-40-LTS-Stable-has-been-released/ba-p/2488202) | UniFi v5.6 latest stable release, **NO MONGO** | 2018-09-10 |
+| [release-5.9.29](https://github.com/goofball222/unifi/releases/tag/5.9.29) | [5.9.29](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852) | Static stable release tag/image | 2018-10-04 |
+| [release-5.8.30](https://github.com/goofball222/unifi/releases/tag/5.8.30) | [5.8.30](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957) | Static stable release tag/image | 2018-09-11 |
+| [release-5.6.40](https://github.com/goofball222/unifi/releases/tag/5.6.40) | [5.6.40](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-6-40-LTS-Stable-has-been-released/ba-p/2488202) | Static stable release tag/image | 2018-09-10 |
 
 ---
 
@@ -20,6 +27,28 @@
 ---
 
 **NOTE:**
+
+**Alpine and -nomongo tags DO NOT contain any internal MongoDB binaries. You must connect them to an external Mongo DB container or other host instance.**
+
+2018-08-21:
+* Changes in structure in git/GitHub. See [CHANGELOG.md](https://github.com/goofball222/unifi/blob/master/CHANGELOG.md)
+* Update tag naming conventions:
+    * alpine-sc is now sc-alpine. Future Alpine builds will be *-alpine, IE: stable-alpine, latest-alpine, unifi58-alpine etc.
+    * *-nom is now *-debian-nomongo. Writing the entire thing out better clarifies what modification it has.
+    * Any future new build tags will follow the `releasetype-os{-mods}` format.
+
+2018-08-13:
+* Added experimental images/tags using Alpine Linux as the base: alpine-sc
+* Renamed UNIFI_GID and UNIFI_UID variables to PGID and PUID respectively.
+* Preliminary build of Debian based images/tags without Mongo included. Naming convention *-nom, IE: sc-nom, unifi58-nom, unifi56-nom
+    * These DO NOT contain an internal Mongo process. You must connect them to an external Mongo DB container or host instance.
+* Added option to skip automatic `chown` during startup. Helps start speed on overlay2 Docker hosts.
+* Added log message warnings about pending future removal of Mongo from container. You can still run this as an all-in-one on current tags, however I highly recommend moving over to a single-service per container setup with Mongo externalized.
+
+
+v5.9+: Ubiquiti changed the SSL certificate handling internally. If you're using a custom LetsEncrypt, etc. SSL certificate and upgrade to v5.9+ you will need to rename/remove the file `unificert.sha256` in `./cert:/usr/lib/unifi/cert` and restart the container to force a re-import of the existing certificate files under the changed keystore alias.
+
+Additional info at https://community.ubnt.com/t5/UniFi-Beta-Blog/UniFi-5-9-4-Unstable-has-been-released/ba-p/2339206
 
 v5.7+ discontinues support for the following hardware, if you have any of these devices in production you need to remain on v5.6:
 * PicoM2 converted to UniFi
@@ -35,7 +64,7 @@ For security/attack surface reduction the container is configured to run the Uni
 The container will attempt to adjust permissions on mapped volumes and data to match before dropping privileges to start the UniFi Java and Mongo processes.
 If the container is being run with a different Docker --user setting permissions may need to be fixed manually.
 
-IE: `chown -R 999:999 /DATA_VOLUME/unifi/{cert,data,logs}`
+IE: `chown -R 999:999 ./{cert,data,logs}`
 
 A custom UID and GID can be configured for the container internal unifi user and group. For more information see the "Environment variables" section in this document.
 
@@ -73,46 +102,111 @@ $ docker run --name unifi -d \
     -p 3478:3478/udp -p 8080:8080 -p 8443:8443 \
     -p 8880:8880 -p 8843:8843 \
     goofball222/unifi
-```  
+```
+
 ---
 
-**Recommended run command line -**
-
-Have the container store the config, databases & logs on a local file-system or in a specific, known data volume (recommended for persistence and troubleshooting) with NO layer 2 discovery (layer 3/remote controller):
+**Recommended run method: [Docker Compose](https://docs.docker.com/compose/) - UniFi app and internal Mongo DB:**
 
 ```bash
-$ docker run --name unifi -d \
-    -p 3478:3478/udp -p 8080:8080 -p 8443:8443 \
-    -p 8880:8880 -p 8843:8843 \
-    -v /DATA_VOLUME/unifi/certs:/usr/lib/unifi/cert  \
-    -v /DATA_VOLUME/unifi/data:/usr/lib/unifi/data  \
-    -v /DATA_VOLUME/unifi/logs:/usr/lib/unifi/logs \
-    goofball222/unifi
+
+version: '3'
+
+services:
+  unifi:
+    image: goofball222/unifi
+    container_name: unifi
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - 3478:3478/udp
+      - 8080:8080
+      - 8443:8443
+      - 8880:8880
+      - 8843:8843
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./cert:/usr/lib/unifi/cert
+      - ./data:/usr/lib/unifi/data
+      - ./logs:/usr/lib/unifi/logs
+    environment:
+      - TZ=UTC
+
 ```
-To enable layer 2 broadcast discovery on a controller container running in the local LAN add:
-```bash
-    - p 10001:10001/udp \
-```
-To enable speed tests from the UniFi iOS & Android apps add:
-```bash
-    - p 6789:6789 \
-```
+
 ---
 
-**Alternative run command line suggested by [rogierlommers](https://hub.docker.com/r/rogierlommers/) -**
-
-Use --network=host mode. Does not allow for port remapping. You may need to manually adjust host firewall settings to allow traffic. Running a container in this mode is considered insecure:
-
-**Please make sure to read the "NETWORK: HOST" section of the [Docker "run" reference](https://docs.docker.com/engine/reference/run/#network-settings) and understand the implications of this setting before using.**
+**Recommended run method: [Docker Compose](https://docs.docker.com/compose/) - UniFi app and Mongo DB as separate services:**
 
 ```bash
-$ docker run --name unifi -d \
-    --network="host" \
-    -v /DATA_VOLUME/unifi/certs:/usr/lib/unifi/cert  \
-    -v /DATA_VOLUME/unifi/data:/usr/lib/unifi/data  \
-    -v /DATA_VOLUME/unifi/logs:/usr/lib/unifi/logs \
-    goofball222/unifi
+
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: unifidb
+    restart: unless-stopped
+#   By default docker-compose will create a new bridge network for the services in the compose file.
+#   Enable this to have the services/containers use the existing docker0/default bridge network.
+#    network_mode: bridge
+    volumes:
+      - ./data/db:/data/db
+
+  unifi:
+    image: goofball222/unifi
+    container_name: unifi
+    restart: unless-stopped
+#   By default docker-compose will create a new bridge network for the services in the compose file.
+#   Enable this to have the services/containers use the existing docker0/default bridge network.
+#    network_mode: bridge
+    links:
+      - mongo
+    ports:
+      - 3478:3478/udp
+      - 8080:8080
+      - 8443:8443
+      - 8880:8880
+      - 8843:8843
+#     Optional: Uncomment to enable speed tests from the UniFi iOS & Android apps
+#      - 6789:6789
+#     Optional: Uncomment for layer 2 broadcast discovery if container running on a host in the local LAN
+#      - 10001:10001/udp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./cert:/usr/lib/unifi/cert
+      - ./data:/usr/lib/unifi/data
+      - ./logs:/usr/lib/unifi/logs
+    environment:
+      - DB_MONGO_LOCAL=false
+      - DB_MONGO_URI=mongodb://mongo:27017/unifi
+      - STATDB_MONGO_URI=mongodb://mongo:27017/unifi_stat
+      - TZ=UTC
+      - UNIFI_DB_NAME=unifi
+
 ```
+
+---
+
+**Alternative network setup suggested by [rogierlommers](https://hub.docker.com/r/rogierlommers/) -**
+
+**Please make sure to read the "NETWORK: HOST" section of the [Docker "run" reference](https://docs.docker.com/engine/reference/run/#network-settings) and understand the implications of this before using.**
+
+Copy the following to both services in the docker-compose.yml file under the commented out `network_mode: bridge` line in the example above, and then uncomment the `network_mode: host` line:
+
+```bash
+
+#   Use host network mode. Does not allow for port remapping. You may need to manually adjust
+#       host firewall settings to allow traffic. Running a container in this mode is considered insecure.
+#    network_mode: host
+
+```
+
+---
+
+[Example basic `docker-compose.yml` in file form](https://raw.githubusercontent.com/goofball222/unifi/master/examples/docker-compose.yml).
+
+[Example advanced `docker-compose.yml` in file form](https://raw.githubusercontent.com/goofball222/unifi/master/examples/docker-compose.externaldb.yml) with external Mongo DB service and UniFi service using environment variables.
 
 ---
 
@@ -125,13 +219,23 @@ $ docker run --name unifi -d \
 | `JVM_EXTRA_OPTS` | ***unset*** | Any additional custom run flags for the container Java process |
 | `JVM_INIT_HEAP_SIZE` | ***unset*** | Sets the start and min memory size for the container Java process (-Xms) |
 | `JVM_MAX_HEAP_SIZE` | ***1024M*** | Sets the max memory size for the container Java process (-Xmx) |
+| `PGID` | ***999*** | Specifies the GID for the container internal unifi group (used for file ownership) |
+| `PUID` | ***999*** | Specifies the UID for the container internal unifi user (used for process and file ownership) |
+| `RUN_CHOWN` | ***true*** | Set to *false* to disable the container automatic `chown` at startup. Speeds up startup process on overlay2 Docker hosts. **NB/IMPORTANT:** It's critical that you insure directory/data permissions on all mapped volumes are correct before disabling this or UniFi and/or Mongo will not start. |
 | `RUNAS_UID0` | ***false*** | Set to *true* to force the container to run the Java/Mongo processes as UID=0 (root) - workaround for `setcap` AUFS missing xargs failure - **NB/IMPORTANT:** running with this set to "true" is insecure |
-| `UNIFI_GID` | ***999*** | Specifies the GID for the container internal unifi group (used for file ownership) |
-| `UNIFI_UID` | ***999*** | Specifies the UID for the container internal unifi user (used for process and file ownership) |
 
-Additionally UniFi [system.properties](https://help.ubnt.com/hc/en-us/articles/205202580-UniFi-system-properties-File-Explanation) config file settings can be passed to the container as -e/--env flags at runtime [(more detail and a PDF with UBNT examples here)](https://community.ubnt.com/t5/UniFi-Wireless-Beta/Unifi-Controller-High-Availability/m-p/1801933/highlight/true#M43494). Envrionment variables must be in ALL CAPS and replace "." with "_".
+Recommended UniFi system.properties converted environment variables to externalize Mongo DB via docker-compose:
 
-IE:
+| Variable | Recommended Setting | Description |
+| :--- | :---: | --- |
+| `DB_MONGO_LOCAL` | ***false*** | Setting this to *false* tells UniFi that we're using an external Mongo DB |
+| `DB_MONGO_URI` | ***mongodb://mongo:27017/unifi***| This sets the URI that UniFi should connect to for the main configuration database |
+| `STATDB_MONGO_URI` | ***mongodb://mongo:27017/unifi_stat*** | This sets the URI that UniFi should connect to for the statistics database |
+| `UNIFI_DB_NAME` | ***unifi*** | Sets a database name that can be connected and managed on the external Mongo DB server, must match with the URI variables (IE: unifi, unifi_stat = unifi). |
+
+**NB/IMPORTANT:** Although I've been running my own deployments with an external DB for a year or more without issue with these settings externalizing the DB, just like running the app itself in a Docker container, is considered experimental and totally unsupported by UBNT. Full documentation for an external DB setup is outside the scope of this README and is left as an exercise for the interested reader. Additional information available on the [UBNT forums in this post](https://community.ubnt.com/t5/UniFi-Wireless/External-MongoDB-Server/m-p/1711073/highlight/true#M188357) and in the PDF post linked below.
+
+Additional UniFi [system.properties](https://help.ubnt.com/hc/en-us/articles/205202580-UniFi-system-properties-File-Explanation) config file settings can be passed to the container as -e/--env/environment flags at runtime [(more detail and a PDF with UBNT examples here)](https://community.ubnt.com/t5/UniFi-Wireless-Beta/Unifi-Controller-High-Availability/m-p/1801933/highlight/true#M43494). Envrionment variables must be in ALL CAPS and replace "." with "_". -- **IE:**
 
 | system.properties | Environment Variable |
 | :--- | :--- |
@@ -140,32 +244,20 @@ IE:
 
 ---
 
-**[Docker Compose](https://docs.docker.com/compose/):**
-
-[Example basic `docker-compose.yml` file](https://raw.githubusercontent.com/goofball222/unifi/master/examples/docker-compose.yml), courtesy of Docker Hub user [jesk](https://hub.docker.com/r/jesk/)
-
-[Example advanced `docker-compose.yml` file](https://raw.githubusercontent.com/goofball222/unifi/master/examples/docker-compose-EXTERNALDB.yml) with external Mongo DB service and UniFi service using environment variables
-
-**NB/IMPORTANT:** Externalizing the DB server and/or using Mongo DB versions > 2.6.12 is highly experimental and completely unsupported by UBNT. Full documentation for an external DB setup is outside the scope of this README and is left as an exercise for the interested reader. Additional information available on the [UBNT forums in this post](https://community.ubnt.com/t5/UniFi-Wireless/External-MongoDB-Server/m-p/1711073/highlight/true#M188357) and in the PDF post linked in the "Environment Variables" section.
-
----
-
 **SSL custom certificate auto-configuration support ([LetsEncrypt](https://letsencrypt.org/), etc.):**
 
 1. Map the Docker host cert storage location or volume to the `/usr/lib/unifi/cert` volume exposed by the container
 2. Must contain a PEM format SSL private key corresponding to the SSL certificate to be installed.
-Private key file **MUST** be named `privkey.pem`. 
+Private key file **MUST** be named `privkey.pem`.
 3. Must contain a PEM format SSL certificate file with the full certification chain. LetsEncrypt handles this automatically, other providers may need manual work (https://www.digicert.com/ssl-support/pem-ssl-creation.htm).
 Certificate file **MUST** be named `fullchain.pem`.
 4. Start the container. SSL import and Java keystore update process is automated during startup. Status, errors, etc. can be found in the container log, IE: `docker logs <containername>`
 5. Existing keystore file will be backed up to  `/usr/lib/unifi/data/keystore-<epochseconds>`
-6. Java keystore is only updated when changes to the certificate files are detected. To force a re-import of existing files delete the `unificert.sha256` file in `/DATA_VOLUME/unifi/cert` and restart the container.
+6. Java keystore is only updated when changes to the certificate files are detected. To force a re-import of existing files delete the `unificert.sha256` file in `./cert` and restart the container.
 
 If you don't want to use a custom SSL certificate then the `/usr/lib/unifi/cert` volume can be left unmapped. Alternatively if the `privkey.pem` and/or `fullchain.pem` file are not present SSL customization will be skipped.
 
-To revert from a custom cert to a UniFi self-signed certificate stop the container, rename or remove `/DATA_VOLUME/unifi/data/keystore`, and restart the container. The UniFi application will automatically generate a new keystore file with a new self-signed cert.
-
-**NB/IMPORTANT:** This feature is present in all dynamic tags and any static release tags built after 2017-08-21.
+To revert from a custom cert to a UniFi self-signed certificate stop the container, rename or remove `./data/keystore`, and restart the container. The UniFi application will automatically generate a new keystore file with a new self-signed cert.
 
 ---
 
